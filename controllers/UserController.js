@@ -13,7 +13,7 @@ module.exports = {
       });
     },
 
-    //get User by ID with thoughts
+    //Get User by ID including their thoughts
     getUserById({ params }, res) {
      User.findOne({ _id: params.id })
         .populate("thoughts")
@@ -37,4 +37,21 @@ module.exports = {
         User.create(body)
         .then(dbUserData => res.json(dbUserData))
         .catch(err => res.status(400).json(err.message));
+    },
+
+    //add friend
+    addFriend({ params }, res) {
+        User.findOneAndUpdate(
+            {_id: params.id},
+            { $addToSet: { friends: params.friendId } },
+            { new: true, runValidators: true}
+        )
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No user found with this ID!' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => res.json(err));
     },
