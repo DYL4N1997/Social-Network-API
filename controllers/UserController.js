@@ -55,3 +55,19 @@ module.exports = {
         })
         .catch(err => res.json(err));
     },
+
+    deleteFriend({ params }, res) {
+        User.findOneAndUpdate(
+          { _id: params.id },
+          { $pull: { friends: params.friendId } },
+          { runValidators: true }
+        )
+          .then((dbuserData) => {
+            if (!dbuserData) {
+              res.status(404).json({ message: "No user found with this id!" });
+              return;
+            }
+            res.json(dbuserData);
+          })
+          .catch((err) => res.status(400).json(err.message));
+      },
