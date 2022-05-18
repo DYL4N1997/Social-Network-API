@@ -1,4 +1,4 @@
-const { User, Thought } = require("../models");
+rconst { User, Thought } = require("../models");
 
 // create user controller variable
 
