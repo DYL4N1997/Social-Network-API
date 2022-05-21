@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 // initialise express
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3008;
 
 // middleware
 app.use(express.json());
