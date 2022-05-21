@@ -58,16 +58,16 @@ module.exports = {
         }
         res.json(dbThoughtData)
     })
-    .catch(err => res.json(err.message));
-},
+    .catch(err => res.json(err.message));   
+  },
 
    removeReaction({ params }, res) {
      Thought.findOneAndUpdate(
-      { _id: params.thoughtId },
-      { $pull: { reactions: { reactionId: params.reactionId } } },
-      { new: true }
+        { _id: params.thoughtId },
+        { $pull: { reactions: { reactionId: params.reactionId } } },
+        { new: true }
     )
-      .then((dbThoughtData) => {
+    .then((dbThoughtData) => {
         if (!dbThoughtData) {
           res
             .status(404)
