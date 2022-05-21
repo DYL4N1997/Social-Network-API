@@ -24,7 +24,7 @@ module.exports = {
             res.status(404).json({ message: "No user can be found with the provided id"})
             return;   
          }   
-          res.json(dbUserData);
+          res.json(UserData);
         })
         .catch(err => {
             console.log(err)

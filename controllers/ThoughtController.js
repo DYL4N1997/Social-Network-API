@@ -4,7 +4,7 @@ module.exports = {
   // get all thoughts
   getAllThoughts(req, res) {
     Thought.find({})
-      .then((dbThoughtData) => res.json(dbThoughtData))
+      .then((ThoughtData) => res.json(ThoughtData))
       .catch((err) => {
         console.log(err);
         res.status(400).json(err.message);
@@ -13,12 +13,12 @@ module.exports = {
 
   getThoughtByID({ params }, res) {
     Thought.findOne({ _id: params.thoughtId })
-      .then((dbThoughtData) => {
-        if (!dbThoughtData) {
+      .then((ThoughtData) => {
+        if (!ThoughtData) {
           res.status(404).json({ message: "No thought found with this ID" });
           return;
         }
-        res.json(dbThoughtData);
+        res.json(ThoughtData);
       })
       .catch((err) => {
         console.log(err);
@@ -35,12 +35,12 @@ module.exports = {
           { new: true }
         );
       })
-      .then((dbUserData) => {
-        if (!dbUserData) {
+      .then((UserData) => {
+        if (!UserData) {
           res.status(404).json({ message: "No user found with this id!" });
           return;
         }
-        res.json(dbUserData);
+        res.json(UserData);
       })
       .catch((err) => res.json(err));
   },
@@ -86,11 +86,11 @@ module.exports = {
         body,
         { new: true, runValidators: true }
     )
-    .then(updatedThought => {
-        if (!updatedThought) {
+    .then(ThoughtData => {
+        if (!ThoughtData) {
             return res.status(404).json({ message: 'No thought with this ID!' });
         }
-        res.json(updatedThought);
+        res.json(ThoughtData);
         })
         .catch(err => res.json(err.message));
    },

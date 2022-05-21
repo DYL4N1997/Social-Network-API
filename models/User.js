@@ -28,7 +28,7 @@ const UserSchema = new Schema(
 );
 
 // create the User Model using the Schema
-const User = model('User', UserSchema);
+const User = model('user', UserSchema);
 
 // get total count of comments and replies on retrieval
 UserSchema.virtual('friendCount').get(function() {
