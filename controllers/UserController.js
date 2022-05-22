@@ -1,4 +1,4 @@
-const { User, Thought } = require("../models");
+const { User } = require("../models");
 
 // create user controller variable
 

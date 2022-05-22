@@ -42,7 +42,7 @@ module.exports = {
         }
         res.json(UserData);
       })
-      .catch((err) => res.json(err));
+      .catch((err) => res.json(err.message));
   },
 
   addReaction ({ params, body}, res) {
@@ -82,7 +82,7 @@ module.exports = {
 
   updateThought({ params, body }, res) {
     Thought.findOneAndUpdate(
-        { _id: params.id }, 
+        { _id: params.thoughtId }, 
         body,
         { new: true, runValidators: true }
     )
