@@ -2,8 +2,7 @@ const { Schema, Types } = require("mongoose");
 const moment = require("moment");
 // reaction schema connected to thought
 const ReactionSchema = new Schema(
-  {
-    // set custom id to avoid confusion 
+  { 
     reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
