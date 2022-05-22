@@ -51,8 +51,10 @@ module.exports = {
         { $push: { reactions: body } },
         { new: true, runValidators: true }
     )
-    .then(dbThoughtData => {
-        if (!dbThoughtData) {
+        .populate({ path: "reactions", select: "-__v" })
+        .select("-__v")
+        .then(dbThoughtData => {
+          if (!dbThoughtData) {
             res.status(404).json({ message: 'No thought with this ID!' });
             return;
         }
